@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Download the required files
+curl -s https://raw.githubusercontent.com/yabonza/yabonza-docker/master/scripts/docker-env.sh -o docker-env.sh
+
+# Fix the file stat
+chmod +x docker-env.sh
+
 # Set the aws variables accordingly
 export AWS_ENV="$1"
 export AWS_ACCOUNT_ID="$2"
@@ -22,11 +28,15 @@ AWS_REMOTE="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$TRAVIS_RE
 SHORT_SHA=${TRAVIS_COMMIT::8}
 
 # Get a unique env tag
-export AWS_ENV_TAG="$(echo $AWS_ENV | tr '[:upper:]' '[:lower:]')-$(date +%s000)"
+export AWS_ENV_TAG="env-$(echo $AWS_ENV | tr '[:upper:]' '[:lower:]')-$(date +%s000)"
+
+# Get the build args
+source ./docker-env.sh
+BUILD_ARGS="$(get-build-args "$AWS_ENV" "$TRAVIS_REPO_SLUG")"
 
 # Compose the build script
-DOCKER_BUILD="$(echo \
-    docker build \
+DOCKER_BUILD="$(echo\
+    docker build "$BUILD_ARGS" \
     --tag "$AWS_REMOTE:$AWS_ENV_TAG" \
     --tag "$AWS_REMOTE:ci-$TRAVIS_JOB_NUMBER" \
     --tag "$AWS_REMOTE:sha-$SHORT_SHA" \
