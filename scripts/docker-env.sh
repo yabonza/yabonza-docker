@@ -21,4 +21,15 @@ get-env-build-task() {
     fi
 }
 
+get-env-release-task() {
+    YABONZA_ENV="$(get-env)"
+    if [ "$YABONZA_ENV" == "PROD" ]; then
+        echo "release:prod"
+    elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "release:dev"
+    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
+        echo "release:sandbox"
+    fi
+}
+
 # vim: set syn=sh :
