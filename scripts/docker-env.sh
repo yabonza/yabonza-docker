@@ -32,4 +32,26 @@ get-env-release-task() {
     fi
 }
 
+get-env-tag() {
+    YABONZA_ENV="$(get-env)"
+    if [ "$YABONZA_ENV" == "PROD" ]; then
+        echo "prod"
+    elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "dev"
+    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
+        echo "sandbox"
+    fi
+}
+
+get-env-ui() {
+    YABONZA_ENV="$(get-env)"
+    if [ "$YABONZA_ENV" == "PROD" ]; then
+        echo "@yabonza/yabonza-ui@prod"
+    elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "@yabonza/yabonza-ui@dev"
+    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
+        echo "@yabonza/yabonza-ui@sandbox"
+    fi
+}
+
 # vim: set syn=sh :
