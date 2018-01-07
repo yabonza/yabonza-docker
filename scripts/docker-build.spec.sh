@@ -9,16 +9,22 @@ TRAVIS_REPO_SLUG="yabonza/yabonza-test"
 source docker-env.sh
 YABONZA_ENV="$(get-env)"
 
+# The lowercase name of the environment
+ENV="$(echo $YABONZA_ENV | tr '[:upper:]' '[:lower:]')"
+
 # Get a short sha
 SHORT_SHA=${TRAVIS_COMMIT::8}
 
-# Check that the sha is correct
-echo "$SHORT_SHA"
+# The current timestamp
+TIMESTAMP="$(date +%s000)"
 
 # Determine the env-tag
-AWS_ENV_TAG="env-$(echo $YABONZA_ENV | tr '[:upper:]' '[:lower:]')-$(date +%s000)"
+AWS_ENV_TAG="env-$ENV-$TIMESTAMP"
 
-# Check that the env-tag is correct
+# Check that the sha displays correctly
+echo "$SHORT_SHA"
+
+# Check that the env-tag displays correctly
 echo "$AWS_ENV_TAG"
 
 # vim: set syn=sh :

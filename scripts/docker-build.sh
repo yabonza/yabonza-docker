@@ -21,11 +21,17 @@ fi
 # The remote of where we are going to push this
 AWS_REMOTE="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$TRAVIS_REPO_SLUG"
 
+# The lowercase name of the environment
+ENV="$(echo $YABONZA_ENV | tr '[:upper:]' '[:lower:]')"
+
 # Get a short sha
 SHORT_SHA=${TRAVIS_COMMIT::8}
 
+# The current timestamp
+TIMESTAMP="$(date +%s000)"
+
 # Get a unique env tag
-export AWS_ENV_TAG="env-$(echo $YABONZA_ENV | tr '[:upper:]' '[:lower:]')-$(date +%s000)"
+export AWS_ENV_TAG="env-$ENV-$TIMESTAMP"
 
 # Get the build args
 source docker-args.sh

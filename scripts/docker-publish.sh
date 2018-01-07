@@ -22,11 +22,8 @@ YABONZA_ENV="$(get-env)"
 # Run the builds
 if [ $YABONZA_ENV == "PROD" ]; then
     ./docker-build.sh "$AWS_PROD_ACCOUNT_ID"    "$AWS_PROD_ACCESS_KEY_ID"    "$AWS_PROD_SECRET_ACCESS_KEY"
-    ./docker-build.sh "$AWS_DEV_ACCOUNT_ID"     "$AWS_DEV_ACCESS_KEY_ID"     "$AWS_DEV_SECRET_ACCESS_KEY"
-    ./docker-build.sh "$AWS_SANDBOX_ACCOUNT_ID" "$AWS_SANDBOX_ACCESS_KEY_ID" "$AWS_SANDBOX_SECRET_ACCESS_KEY"
 elif [ $YABONZA_ENV == "DEV" ]; then
     ./docker-build.sh "$AWS_DEV_ACCOUNT_ID"     "$AWS_DEV_ACCESS_KEY_ID"     "$AWS_DEV_SECRET_ACCESS_KEY"
-    ./docker-build.sh "$AWS_SANDBOX_ACCOUNT_ID" "$AWS_SANDBOX_ACCESS_KEY_ID" "$AWS_SANDBOX_SECRET_ACCESS_KEY"
 elif [ $YABONZA_ENV == "SANDBOX" ]; then
     ./docker-build.sh "$AWS_SANDBOX_ACCOUNT_ID" "$AWS_SANDBOX_ACCESS_KEY_ID" "$AWS_SANDBOX_SECRET_ACCESS_KEY"
 fi
