@@ -54,4 +54,15 @@ get-env-ui() {
     fi
 }
 
+get-env-version-task() {
+    YABONZA_ENV="$(get-env)"
+    if [ "$YABONZA_ENV" == "PROD" ]; then
+        echo "version:prod"
+    elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "version:dev"
+    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
+        echo "version:sandbox"
+    fi
+}
+
 # vim: set syn=sh :
