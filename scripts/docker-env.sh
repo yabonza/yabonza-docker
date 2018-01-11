@@ -21,6 +21,21 @@ get-env-build-task() {
     fi
 }
 
+get-env-bump-task() {
+    YABONZA_ENV="$(get-env)"
+    if [ "$YABONZA_ENV" == "PROD" ]; then
+        echo "bump:prod"
+    elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "bump:dev"
+    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
+        echo "bump:sandbox"
+    fi
+}
+
+get-env-locale-lower() {
+    echo $YABONZA_LOCALE | tr '[:upper:]' '[:lower:]'
+}
+
 get-env-release-task() {
     YABONZA_ENV="$(get-env)"
     if [ "$YABONZA_ENV" == "PROD" ]; then
@@ -34,34 +49,25 @@ get-env-release-task() {
 
 get-env-tag() {
     YABONZA_ENV="$(get-env)"
+    YABONZA_LOCALE_LOWER="$(get-env-locale-lower)"
     if [ "$YABONZA_ENV" == "PROD" ]; then
-        echo "prod"
+        echo "prod-$YABONZA_LOCALE_LOWER"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
-        echo "dev"
+        echo "dev-$YABONZA_LOCALE_LOWER"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
-        echo "sandbox"
+        echo "sandbox-$YABONZA_LOCALE_LOWER"
     fi
 }
 
 get-env-ui() {
     YABONZA_ENV="$(get-env)"
+    YABONZA_LOCALE_LOWER="$(get-env-locale-lower)"
     if [ "$YABONZA_ENV" == "PROD" ]; then
-        echo "@yabonza/yabonza-ui@prod"
+        echo "@yabonza/yabonza-ui@prod-$YABONZA_LOCALE_LOWER"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
-        echo "@yabonza/yabonza-ui@dev"
+        echo "@yabonza/yabonza-ui@dev-$YABONZA_LOCALE_LOWER"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
-        echo "@yabonza/yabonza-ui@sandbox"
-    fi
-}
-
-get-env-version-task() {
-    YABONZA_ENV="$(get-env)"
-    if [ "$YABONZA_ENV" == "PROD" ]; then
-        echo "version:prod"
-    elif [ "$YABONZA_ENV" == "DEV" ]; then
-        echo "version:dev"
-    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
-        echo "version:sandbox"
+        echo "@yabonza/yabonza-ui@sandbox-$YABONZA_LOCALE_LOWER"
     fi
 }
 

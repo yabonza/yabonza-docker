@@ -42,6 +42,7 @@ DOCKER_BUILD="$(echo\
     docker build "$DOCKER_ARGS" \
     --tag "$AWS_REMOTE:$AWS_ENV_TAG" \
     --tag "$AWS_REMOTE:ci-$TRAVIS_JOB_NUMBER" \
+    --tag "$AWS_REMOTE:locale-$YABONZA_LOCALE" \
     --tag "$AWS_REMOTE:sha-$SHORT_SHA" \
     --tag "$AWS_REMOTE:latest" \
     .)"
@@ -53,6 +54,7 @@ eval "$DOCKER_BUILD"
 # Push all of the tags
 docker push "$AWS_REMOTE:$AWS_ENV_TAG"
 docker push "$AWS_REMOTE:ci-$TRAVIS_JOB_NUMBER"
+docker push "$AWS_REMOTE:locale-$YABONZA_LOCALE"
 docker push "$AWS_REMOTE:sha-$SHORT_SHA"
 docker push "$AWS_REMOTE:latest"
 
