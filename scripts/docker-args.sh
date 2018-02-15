@@ -47,7 +47,7 @@ get-global-args() {
 
 get-prod-args() {
     declare -a PROD_ARGS_LIST=(
-        "YABONZA_ENV:PROD"
+        "YABONZA_ENV=PROD"
     )
     PROD_ARGS=""
     for PROD_ARG in "${PROD_ARGS_LIST[@]}"
@@ -59,7 +59,7 @@ get-prod-args() {
 
 get-dev-args() {
     declare -a DEV_ARGS_LIST=(
-        "YABONZA_ENV:DEV"
+        "YABONZA_ENV=DEV"
     )
     DEV_ARGS=""
     for DEV_ARG in "${DEV_ARGS_LIST[@]}"
@@ -71,7 +71,7 @@ get-dev-args() {
 
 get-sandbox-args() {
     declare -a SANDBOX_ARGS_LIST=(
-        "YABONZA_ENV:SANDBOX"
+        "YABONZA_ENV=SANDBOX"
     )
     SANDBOX_ARGS=""
     for SANDBOX_ARG in "${SANDBOX_ARGS_LIST[@]}"
