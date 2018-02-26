@@ -58,4 +58,7 @@ docker push "$AWS_REMOTE:locale-$YABONZA_LOCALE"
 docker push "$AWS_REMOTE:sha-$SHORT_SHA"
 docker push "$AWS_REMOTE:latest"
 
+# Invoke lambda for deployment
+aws lambda invoke --function-name yabonza-deploy-lambda --payload "{\"Records\": [{\"Sns\": {\"Message\": {\"AlarmName\": \"$TRAVIS_REPO_SLUG-ecr-upload\", \"AWSAccountId\": \"$AWS_ACCOUNT_ID\"}}}]}" output.txt
+
 # vim: set syn=sh :
