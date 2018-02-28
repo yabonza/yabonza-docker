@@ -10,16 +10,6 @@ get-env() {
     fi
 }
 
-get-branch-rp() {
-    if [ "$TRAVIS_BRANCH" == "master" ]; then
-        echo "master"
-    elif [ "$TRAVIS_BRANCH" == "develop" ]; then
-        echo "develop"
-    else
-        echo "feature/bastian"
-    fi
-}
-
 get-env-build-task() {
     YABONZA_ENV="$(get-env)"
     if [ "$YABONZA_ENV" == "PROD" ]; then
