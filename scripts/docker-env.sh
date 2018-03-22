@@ -32,8 +32,19 @@ get-env-bump-task() {
     fi
 }
 
+get-env-e2e-task() {
+    YABONZA_ENV="$(get-env)"
+    if [ "$YABONZA_ENV" == "PROD" ]; then
+        echo "e2e:prod"
+    elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "e2e:dev"
+    elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
+        echo "e2e:sandbox"
+    fi
+}
+
 get-env-locale-lower() {
-    echo $YABONZA_LOCALE | tr '[:upper:]' '[:lower:]'
+    echo $YABONZA_LOCALE_ID | tr '[:upper:]' '[:lower:]'
 }
 
 get-env-release-task() {
@@ -61,13 +72,13 @@ get-env-ui() {
 
 get-env-ui-tag() {
     YABONZA_ENV="$(get-env)"
-    YABONZA_LOCALE_LOWER="$(get-env-locale-lower)"
+    YABONZA_LOCALE_ID_LOWER="$(get-env-locale-lower)"
     if [ "$YABONZA_ENV" == "PROD" ]; then
-        echo "prod-$YABONZA_LOCALE_LOWER"
+        echo "prod-$YABONZA_LOCALE_ID_LOWER"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
-        echo "dev-$YABONZA_LOCALE_LOWER"
+        echo "dev-$YABONZA_LOCALE_ID_LOWER"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
-        echo "sandbox-$YABONZA_LOCALE_LOWER"
+        echo "sandbox-$YABONZA_LOCALE_ID_LOWER"
     fi
 }
 
