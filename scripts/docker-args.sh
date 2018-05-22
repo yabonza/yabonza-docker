@@ -47,8 +47,7 @@ get-global-args() {
 
 get-prod-args() {
     declare -a PROD_ARGS_LIST=(
-        "YABONZA_ENV=PROD",
-	"AUTH0_CLIENT_SECRET=$AUTH0_PROD_CLIENT_SECRET"
+        "YABONZA_ENV=PROD" "AUTH0_CLIENT_SECRET=$AUTH0_PROD_CLIENT_SECRET"
     )
     PROD_ARGS=""
     for PROD_ARG in "${PROD_ARGS_LIST[@]}"
@@ -60,8 +59,7 @@ get-prod-args() {
 
 get-dev-args() {
     declare -a DEV_ARGS_LIST=(
-        "YABONZA_ENV=DEV",
-	"AUTH0_CLIENT_SECRET=$AUTH0_DEV_CLIENT_SECRET"
+        "YABONZA_ENV=DEV" "AUTH0_CLIENT_SECRET=$AUTH0_DEV_CLIENT_SECRET"
     )
     DEV_ARGS=""
     for DEV_ARG in "${DEV_ARGS_LIST[@]}"
@@ -73,8 +71,7 @@ get-dev-args() {
 
 get-sandbox-args() {
     declare -a SANDBOX_ARGS_LIST=(
-        "YABONZA_ENV=SANDBOX",
- 	"AUTH0_CLIENT_SECRET=$AUTH0_SANDBOX_CLIENT_SECRET"
+        "YABONZA_ENV=SANDBOX" "AUTH0_CLIENT_SECRET=$AUTH0_SANDBOX_CLIENT_SECRET"
     )
     SANDBOX_ARGS=""
     for SANDBOX_ARG in "${SANDBOX_ARGS_LIST[@]}"
