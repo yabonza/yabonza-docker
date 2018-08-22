@@ -2,21 +2,21 @@
 
 get-env-aws-access-key() {
     if [ "$TRAVIS_BRANCH" == "master" ]; then
-        echo AWS_ACCESS_KEY_ID=$AWS_PROD_ACCESS_KEY_ID
+        echo $AWS_PROD_ACCESS_KEY_ID
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
-        echo AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID
+        echo $AWS_DEV_ACCESS_KEY_ID
     else
-        echo AWS_ACCESS_KEY_ID=$AWS_SANDBOX_ACCESS_KEY_ID
+        echo $AWS_SANDBOX_ACCESS_KEY_ID
     fi
 }
 
 get-env-aws-access-secret() {
     if [ "$TRAVIS_BRANCH" == "master" ]; then
-        echo AWS_SECRET_ACCESS_KEY=$AWS_PROD_SECRET_ACCESS_KEY
+        echo $AWS_PROD_SECRET_ACCESS_KEY
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
-        echo AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY
+        echo $AWS_DEV_SECRET_ACCESS_KEY
     else
-        echo AWS_SECRET_ACCESS_KEY=$AWS_SANDBOX_SECRET_ACCESS_KEY
+        echo $AWS_SANDBOX_SECRET_ACCESS_KEY
     fi
 }
 
