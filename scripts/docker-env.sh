@@ -10,6 +10,16 @@ get-env() {
     fi
 }
 
+get-env-lower() {
+    if [ "$TRAVIS_BRANCH" == "master" ]; then
+        echo "prod"
+    elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+        echo "dev"
+    else
+        echo "sandbox"
+    fi
+}
+
 get-env-build-task() {
     YABONZA_ENV="$(get-env)"
     if [ "$YABONZA_ENV" == "PROD" ]; then
