@@ -41,7 +41,7 @@ get-env-lower() {
         echo "prod"
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
         echo "dev"
-    elif [[] "$TRAVIS_BRANCH" == *"release"* ]]; then
+    elif [[ "$TRAVIS_BRANCH" == *"release"* ]]; then
             echo "dev"
     else
         echo "sandbox"
