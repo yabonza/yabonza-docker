@@ -5,6 +5,8 @@ get-env-aws-access-key() {
         echo $AWS_PROD_ACCESS_KEY_ID
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
         echo $AWS_DEV_ACCESS_KEY_ID
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
+        echo $AWS_DEV_ACCESS_KEY_ID
     else
         echo $AWS_SANDBOX_ACCESS_KEY_ID
     fi
@@ -14,6 +16,8 @@ get-env-aws-access-secret() {
     if [ "$TRAVIS_BRANCH" == "master" ]; then
         echo $AWS_PROD_SECRET_ACCESS_KEY
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+        echo $AWS_DEV_SECRET_ACCESS_KEY
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
         echo $AWS_DEV_SECRET_ACCESS_KEY
     else
         echo $AWS_SANDBOX_SECRET_ACCESS_KEY
@@ -25,6 +29,8 @@ get-env() {
         echo "PROD"
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
         echo "DEV"
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
+        echo "DEV"
     else
         echo "SANDBOX"
     fi
@@ -35,6 +41,8 @@ get-env-lower() {
         echo "prod"
     elif [ "$TRAVIS_BRANCH" == "develop" ]; then
         echo "dev"
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
+            echo "dev"
     else
         echo "sandbox"
     fi
@@ -46,6 +54,8 @@ get-env-build-task() {
         echo "build:prod"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
         echo "build:dev"
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
+            echo "build:dev"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
         echo "build:sandbox"
     fi
@@ -56,6 +66,8 @@ get-env-bump-task() {
     if [ "$YABONZA_ENV" == "PROD" ]; then
         echo "bump:prod"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
+        echo "bump:dev"
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
         echo "bump:dev"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
         echo "bump:sandbox"
@@ -68,6 +80,8 @@ get-env-e2e-task() {
         echo "e2e:prod"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
         echo "e2e:dev"
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
+            echo "e2e:dev"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
         echo "e2e:sandbox"
     fi
@@ -83,6 +97,8 @@ get-env-release-task() {
         echo "release:prod"
     elif [ "$YABONZA_ENV" == "DEV" ]; then
         echo "release:dev"
+    elif [ "$TRAVIS_BRANCH" == *"release"* ]; then
+            echo "release:dev"
     elif [ "$YABONZA_ENV" == "SANDBOX" ]; then
         echo "release:sandbox"
     fi
